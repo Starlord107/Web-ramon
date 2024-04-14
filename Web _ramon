@@ -1,0 +1,17 @@
+import json
+
+# Carga el archivo JSON exportado de Trello
+with open('web.json') as file:
+    data = json.load(file)
+
+# Extrae la información que necesitas y genera HTML
+html_content = "<html><head><title>Mi Tablero de Trello</title></head><body><h1>Tablero Trello</h1>"
+
+for card in data['cards']:
+    html_content += f"<h2>{card['name']}</h2><p>{card['desc']}</p>"
+
+html_content += "</body></html>"
+
+# Guarda el contenido en un archivo HTML
+with open('index.html', 'w') as file:
+    file.write(html_content)
